@@ -2,7 +2,7 @@ FROM centos:7
 MAINTAINER Severalnines <ashraf@severalnines.com>
 
 #new add
-ENV LC_ALL = en_US.UTF-8
+ENV LANG = en_US.UTF-8
 ENV TZ = 'Asia/Shanghai'
 
 RUN echo -e "[mariadb]\nname = MariaDB\nbaseurl = http://yum.mariadb.org/10.2/centos7-amd64/\nenabled = 1\ngpgkey = https://yum.mariadb.org/RPM-GPG-KEY-MariaDB\ngpgcheck = 1"  > /etc/yum.repos.d/MariaDB.repo
