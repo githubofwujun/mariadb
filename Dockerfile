@@ -1,4 +1,4 @@
-FROM centos:7
+FROM centos:7.6.1810
 MAINTAINER Severalnines <ashraf@severalnines.com>
 ENV TZ = 'Asia/Shanghai'
 ENV LANG = 'en_US.UTF-8'
@@ -7,7 +7,7 @@ RUN echo -e "[mariadb]\nname = MariaDB\nbaseurl = http://yum.mariadb.org/10.1/ce
 RUN rpmkeys --import https://www.percona.com/downloads/RPM-GPG-KEY-percona && \
 	yum install -y http://www.percona.com/downloads/percona-release/redhat/0.1-4/percona-release-0.1-4.noarch.rpm
 RUN yum install -y which MariaDB-server MariaDB-client socat percona-xtrabackup crontabs && \
-	yum clean all 
+	yum clean all  && cat /etc/resolv.conf
 
 ADD my.cnf /etc/my.cnf
 VOLUME /var/lib/mysql
