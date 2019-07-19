@@ -14,7 +14,7 @@ if [ -z "$CLUSTER_NAME" ]; then
 fi
 	# Get config
 	#DATADIR="$("mysqld" --verbose --help 2>/dev/null | awk '$1 == "datadir" { print $2; exit }')"
-	DATADIR="/var/lib/mysql"
+	DATADIR='/var/lib/mysql'
 	echo >&2 "Content of $DATADIR:"
 	ls -al $DATADIR
 
