@@ -14,6 +14,7 @@ RUN set -x \
      percona-toolkit \
      percona-xtrabackup \
      curl \
+     galera \
   && rm -rf /tmp/* /var/cache/apk/* /var/lib/apt/lists/*
   
 
@@ -31,7 +32,7 @@ EXPOSE 3306 4567 4568
 HEALTHCHECK --interval=10s --timeout=3s --retries=15 \
 	CMD /bin/sh /healthcheck.sh || exit 1
 
-ENTRYPOINT ["/entrypoint.sh"]
+#ENTRYPOINT ["/entrypoint.sh"]
 
 
 
