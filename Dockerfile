@@ -6,7 +6,7 @@ RUN echo -e "[mariadb]\nname = MariaDB\nbaseurl = http://yum.mariadb.org/10.2/ce
 
 RUN rpmkeys --import https://www.percona.com/downloads/RPM-GPG-KEY-percona && \
 	yum install -y http://www.percona.com/downloads/percona-release/redhat/0.1-4/percona-release-0.1-4.noarch.rpm
-RUN groupadd mysql && useradd -aG mysql mysql
+RUN groupadd mysql && useradd -g mysql mysql
 RUN yum install -y which MariaDB-server MariaDB-client socat percona-xtrabackup  && \
 	yum clean all
 
