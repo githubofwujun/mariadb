@@ -6,8 +6,8 @@ RUN echo -e "[mariadb]\nname = MariaDB\nbaseurl = http://yum.mariadb.org/10.2/ce
 
 RUN rpmkeys --import https://www.percona.com/downloads/RPM-GPG-KEY-percona && \
 	yum install -y http://www.percona.com/downloads/percona-release/redhat/0.1-4/percona-release-0.1-4.noarch.rpm
-RUN yum install -y which MariaDB-server MariaDB-client socat percona-xtrabackup galera && \
-	yum clean all 
+RUN yum install -y which MariaDB-server MariaDB-client socat percona-xtrabackup  && \
+	yum clean all &&  find / -name "/usr/lib64/galera/libgalera_smm.so"
 
 ADD my.cnf /etc/my.cnf
 VOLUME /var/lib/mysql
