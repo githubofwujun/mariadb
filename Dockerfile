@@ -6,8 +6,9 @@ RUN echo -e "[mariadb]\nname = MariaDB\nbaseurl = http://yum.mariadb.org/10.2/ce
 
 RUN rpmkeys --import https://www.percona.com/downloads/RPM-GPG-KEY-percona && \
 	yum install -y http://www.percona.com/downloads/percona-release/redhat/0.1-4/percona-release-0.1-4.noarch.rpm
+RUN groupadd mysql && useradd -aG mysql mysql
 RUN yum install -y which MariaDB-server MariaDB-client socat percona-xtrabackup  && \
-	yum clean all &&  find / -name "/usr/lib64/galera/libgalera_smm.so"
+	yum clean all
 
 ADD my.cnf /etc/my.cnf
 VOLUME /var/lib/mysql
@@ -17,9 +18,9 @@ COPY report_status.sh /report_status.sh
 COPY healthcheck.sh /healthcheck.sh
 COPY jq /usr/bin/jq
 RUN chmod a+x /usr/bin/jq
-
+RUN find / -name 'libgalera_smm.so'
 EXPOSE 3306 4567 4568
-ONBUILD RUN yum update -y
+#ONBUILD RUN yum update -y
 HEALTHCHECK --interval=10s --timeout=3s --retries=15 \
 	CMD /bin/sh /healthcheck.sh || exit 1
 
